@@ -25,29 +25,29 @@ It combines *image generation, text retrieval, and adaptive constraint control* 
 ## Installation
 
 ### 1️. Clone the repository
-```bash
+
 git clone https://github.com/KhotNoorin/integrated_diffusion_rag_mcp.git
 cd integrated_diffusion_rag_mcp
 
 ### 2️. Create a virtual environment (recommended)
-```bash
+
 python -m venv .venv
 .\.venv\Scripts\activate
 
 ### 3️. Install dependencies
 If you want the latest compatible versions for Python 3.13+:
-```bash
+
 pip install -r requirements.txt
 Or install the project in editable (development) mode:
-```bash
+
 pip install -e .
 
 ### Usage
 Run the frontend app
-```bash
+
 streamlit run frontend/app.py
 Or run as a Python module
-```bash
+
 python -m frontend.app
 
 Once launched, you can:
@@ -88,7 +88,7 @@ Once launched, you can:
 ##Evaluation
 
 You can evaluate generated samples using:
-```bash
+
 python -m evaluation.run_metrics
 
 ### Supported metrics:
@@ -106,6 +106,8 @@ Built using:
 - Transformers
 - FAISS
 - Streamlit
+
+----
 
 ## Author
 
