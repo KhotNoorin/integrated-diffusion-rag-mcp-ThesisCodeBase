@@ -4,7 +4,7 @@
 
 ---
 
-## 🧩 Overview
+## Overview
 
 This project integrates **Diffusion Models**, **Retrieval-Augmented Generation (RAG)**, and **Multi-Constraint Prompting (MCP)** to build a unified multimodal content generation system.  
 It combines *image generation, text retrieval, and adaptive constraint control* to generate coherent and high-quality visual and textual outputs.
@@ -97,6 +97,8 @@ python -m evaluation.run_metrics
 - Cosine Similarity
 - Human Evaluation Reports (Excel via openpyxl)
 
+---
+
 ## Acknowledgements
 
 Built using:
@@ -111,10 +113,3 @@ Noorin Khot
 GitHub: KhotNoorin
 
 ---
-
-### ✅ After saving this file
-
-Run again:
-
-```bash
-pip install -e .
