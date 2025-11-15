@@ -25,31 +25,33 @@ It combines *image generation, text retrieval, and adaptive constraint control* 
 ## Installation
 
 ### 1️. Clone the repository
-
+```bash
 git clone https://github.com/KhotNoorin/integrated-diffusion-rag-mcp-ThesisCodeBase.git
 cd integrated_diffusion_rag_mcp
-
+```
 ### 2️. Create a virtual environment (recommended)
-
+```bash
 python -m venv .venv
 .\.venv\Scripts\activate
-
+```
 ### 3️. Install dependencies
 If you want the latest compatible versions for Python 3.13+:
-
+```bash
 pip install -r requirements.txt
+```
 Or install the project in editable (development) mode:
-
+```bash
 pip install -e .
-
+```
 ### Usage
 Run the frontend app
-
+```bash
 streamlit run frontend/app.py
+```
 Or run as a Python module
-
+```bash
 python -m frontend.app
-
+```
 Once launched, you can:
 - Enter a text prompt
 - Adjust generation constraints (e.g., max tokens, creativity)
@@ -119,12 +121,131 @@ Built using:
 - Transformers
 - FAISS
 - Streamlit
-
+----
+## Structure:
+```bash
+integrated_diffusion_rag_mcp/
+│
+├── README.md
+├── requirements.txt
+├── setup.py
+├── .env
+├── config.yaml                     # Global config (paths, model names, constraints, API keys)
+│
+├── data/
+│   ├── raw/                          # Unprocessed datasets
+│   ├── processed/                    # Tokenized, preprocessed datasets
+│   ├── embeddings/                   # Vectorized data (CLIP/BERT)
+│   ├── metadata/                     # Captions, annotations, indexes
+│   ├── retrieval_index/              # FAISS / Chroma persistent stores
+│   └── examples/                     # Example multimodal prompts for demos
+│
+├── models/
+│   ├── __init__.py
+│   │
+│   ├── diffusion/
+│   │   ├── base_diffusion.py         # Core diffusion pipeline (e.g., Stable Diffusion)
+│   │   ├── controlnet_adapter.py     # Optional ControlNet support
+│   │   ├── unet_config.py
+│   │   └── diffusion_pipeline.py     # Combined RAG + Diffusion generation logic
+│   │
+│   ├── retrieval/
+│   │   ├── embedder.py               # Embedding model (CLIP, BERT)
+│   │   ├── retriever.py              # Dense / hybrid retriever
+│   │   ├── index_builder.py          # Build FAISS/Chroma index
+│   │   └── reranker.py               # Optional cross-encoder reranker
+│   │
+│   ├── constraints/
+│   │   ├── constraint_manager.py     # Manages all constraints dynamically
+│   │   ├── factuality_checker.py     # Checks knowledge-grounded correctness
+│   │   ├── style_controller.py       # Controls tone, art style, etc.
+│   │   ├── ethical_filter.py         # Filters NSFW or bias-prone outputs
+│   │   └── diversity_controller.py   # Promotes visual/textual diversity
+│   │
+│   ├── fusion/
+│   │   ├── multimodal_fuser.py       # Combines text+image representations
+│   │   └── attention_bridge.py       # Optional transformer-based fusion
+│   │
+│   ├── multimodal_generator.py       # Central model integrating RAG + Diffusion + MCP
+│   ├── prompt_constructor.py         # Dynamically builds multi-constraint prompts
+│   └── evaluator.py                  # Evaluates multimodal outputs (BLEU, CLIPScore, FID, CSR)
+│
+├── pipelines/
+│   ├── text_generation.py            # Text-only RAG + constraints → text
+│   ├── image_generation.py           # RAG + diffusion + constraints → image
+│   ├── multimodal_generation.py      # Unified multimodal generation
+│   ├── evaluation_pipeline.py        # Runs evaluation metrics end-to-end
+│   └── realworld_demo_pipeline.py    # For real-world scenario demos
+│
+├── training/
+│   ├── dataset_loader.py             # Unified loader for text, image, multimodal data
+│   ├── fine_tuning.py                # Fine-tuning CLIP / ControlNet
+│   ├── loss_functions.py
+│   ├── train_config.yaml
+│   └── trainer.py                    # Handles model training loops
+│
+├── experiments/
+│   ├── configs/
+│   │   ├── ablation_rag.yaml         # Config for RAG-only test
+│   │   ├── ablation_diffusion.yaml   # Config for Diffusion-only test
+│   │   ├── full_model.yaml           # Config for full RAG+Diffusion+MCP
+│   │   └── constraint_sweep.yaml     # Sweep over constraints weights
+│   │
+│   ├── results/
+│   │   ├── metrics_logs.csv
+│   │   ├── evaluation_plots/
+│   │   └── comparison_tables/
+│   │
+│   ├── run_ablation.py               # Runs ablation studies automatically
+│   └── run_experiments.py            # Master script for reproducible results
+│
+├── utils/
+│   ├── config_loader.py
+│   ├── logging_utils.py
+│   ├── visualization.py              # Plots + Streamlit visualizations
+│   ├── metrics.py                    # BLEU, FID, CLIPScore, CSR, etc.
+│   ├── prompt_utils.py
+│   ├── data_utils.py
+│   └── timer.py
+│
+├── evaluation/
+│   ├── metrics_reporter.py           # Generate tables, LaTeX, CSV outputs
+│   ├── qualitative_examples.py       # Side-by-side visual comparisons
+│   ├── human_eval.py                 # Human evaluation setup (optional)
+│   └── evaluation_dashboard.py       # Streamlit dashboard for evaluation
+│
+├── frontend/
+│   ├── app.py                        # Streamlit / Gradio front-end
+│   ├── components/
+│   │   ├── prompt_ui.py
+│   │   ├── image_display.py
+│   │   ├── constraint_controls.py
+│   │   └── evaluation_viewer.py
+│   └── static/
+│       └── css/
+│
+├── notebooks/
+│   ├── 01_data_exploration.ipynb
+│   ├── 02_model_integration.ipynb
+│   ├── 03_constraint_tuning.ipynb
+│   ├── 04_demo_generation.ipynb
+│   ├── 05_evaluation_visuals.ipynb
+│   └── 06_realworld_case_study.ipynb
+│
+└── tests/
+    ├── test_retrieval.py
+    ├── test_diffusion_integration.py
+    ├── test_constraints.py
+    ├── test_evaluator.py
+    ├── test_multimodal_pipeline.py
+    └── test_end_to_end.py
+```
 ----
 
 ## Author
 
 Noorin Khot
+
 GitHub: KhotNoorin
 
 ---
