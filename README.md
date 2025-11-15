@@ -26,7 +26,7 @@ It combines *image generation, text retrieval, and adaptive constraint control* 
 
 ### 1️. Clone the repository
 
-git clone https://github.com/KhotNoorin/integrated_diffusion_rag_mcp.git
+git clone https://github.com/KhotNoorin/integrated-diffusion-rag-mcp-ThesisCodeBase.git
 cd integrated_diffusion_rag_mcp
 
 ### 2️. Create a virtual environment (recommended)
@@ -99,6 +99,19 @@ python -m evaluation.run_metrics
 
 ---
 
+## Screenshots:
+### Interface:
+
+<img src="Screenshots/1.png" width="600"/>
+<img src="Screenshots/2.png" width="600"/>
+<img src="Screenshots/3.png" width="600"/>
+
+### Output: 
+
+<img src="Screenshots/OutPut-1.png" width="600"/>
+<img src="Screenshots/OutPut-2.png" width="600"/>
+
+---
 ## Acknowledgements
 
 Built using:
