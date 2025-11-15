@@ -1,0 +1,5 @@
+experiment_name,epoch,metric,baseline_value,improved_value,delta_percent,timestamp
+ablation_rag,1,BLEU,0.42,0.58,38.10,2025-11-07 17:32:00
+ablation_diffusion,1,FID,65.3,48.7,-25.42,2025-11-07 17:35:10
+full_model_integration,5,CLIPScore,0.68,0.79,16.17,2025-11-07 17:45:22
+constraint_weight_sweep,3,Constraint_Factual,0.72,0.91,26.38,2025-11-07 17:50:00

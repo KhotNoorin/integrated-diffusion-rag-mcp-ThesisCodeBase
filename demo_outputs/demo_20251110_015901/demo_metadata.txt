@@ -1,0 +1,10 @@
+Scenario: A mountain made of glass
+Prompt: A mountain made of glass, depicted in a realistic manner.
+
+[ETHICAL SAFETY NOTE]: Ensure the generated content follows ethical and non-harmful principles. Avoid NSFW, violent, or biased elements.
+
+[DIVERSITY NOTE]: Encourage diverse, non-repetitive, and creatively varied elements in the generation. Avoid duplication of visual or linguistic features.
+
+[FACTUALITY DIRECTIVE]: Ensure that all details are factual and supported by verified evidence. Do not introduce speculative or misleading content.
+Constraints: {'factual': True, 'ethical': True, 'diversity': True, 'style': 'realistic', 'style_strength': 1.0, 'factual_weight': 1.0}
+Evaluation: {'Constraint_Factual': 1.0, 'Constraint_Style': 1.0, 'Constraint_Ethical': 0.9997695803613169, 'Constraint_Diversity': np.float64(nan), 'OverallScore': np.float64(nan)}

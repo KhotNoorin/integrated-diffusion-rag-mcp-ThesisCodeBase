@@ -1,0 +1,17 @@
+[
+  {
+    "scenario": "Education",
+    "prompt": "Explain renewable energy using a futuristic city illustration",
+    "constraints": {"style": "scientific", "factual": true, "ethical": true}
+  },
+  {
+    "scenario": "Art",
+    "prompt": "A surreal painting of a city floating above the ocean",
+    "constraints": {"style": "abstract", "diversity": true}
+  },
+  {
+    "scenario": "Cinematic",
+    "prompt": "A dramatic shot of a scientist in a glowing neon lab",
+    "constraints": {"style": "cinematic", "factual": false}
+  }
+]

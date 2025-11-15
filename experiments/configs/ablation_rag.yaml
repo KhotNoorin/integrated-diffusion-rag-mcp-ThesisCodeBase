@@ -1,0 +1,43 @@
+# ============================================================
+# Ablation: RAG-Only
+# Purpose: Measure text-generation accuracy improvement from Retrieval Augmented Generation
+# ============================================================
+
+experiment:
+  name: "ablation_rag"
+  description: "Evaluate text-only RAG vs. baseline LLM without constraints."
+  output_dir: "experiments/results/ablation_rag"
+
+model:
+  type: "text_only"         # no diffusion, text generation only
+  use_retriever: true
+  use_diffusion: false
+  use_constraints: false
+
+retrieval:
+  retriever_type: "dense"   # or hybrid
+  top_k: 3
+  reranker: true
+
+training:
+  epochs: 3
+  batch_size: 8
+  lr: 2e-5
+
+loss:
+  clip_align: 0.0
+  mcp: 0.0
+  recon_l1: 0.0
+  recon_l2: 0.0
+
+evaluation:
+  run_during_training: true
+  metrics: [ "BLEU", "ROUGE", "CLIPScore" ]
+
+dataset:
+  path: "data/processed/text_dataset"
+  max_samples: 2000
+
+notes:
+  - "RAG enhances factual accuracy using dense retrieval from Chroma/FAISS."
+  - "Serves as text-only baseline for multimodal system."

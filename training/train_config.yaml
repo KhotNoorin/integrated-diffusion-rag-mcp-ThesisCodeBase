@@ -1,0 +1,103 @@
+# ============================================================
+# 🧠 TRAIN CONFIGURATION FILE
+# Project: Integrating Diffusion Models with RAG and MCP
+# Purpose: Reproducible multimodal fine-tuning configuration
+# ============================================================
+
+experiment:
+  name: "multimodal_finetune_v1"
+  description: "Fine-tuning CLIP + adapter with constraint-weighted multi-loss on multimodal dataset."
+  seed: 42
+  output_dir: "training_outputs"
+  save_every: 1
+  log_interval: 10
+
+# ------------------------------------------------------------
+# Dataset Settings
+# ------------------------------------------------------------
+data:
+  dataset_path: "data/processed/sample_dataset"
+  batch_size: 8
+  num_workers: 4
+  val_split: 0.1
+  max_samples: null   # limit samples for debugging, or null for all
+
+# ------------------------------------------------------------
+# Model Settings
+# ------------------------------------------------------------
+model:
+  type: "clip"                 # options: clip | controlnet | custom
+  pretrained_name: "ViT-B/32"  # CLIP variant
+  use_adapter: true
+  adapter_bottleneck: 128
+  device: "cuda"
+
+# ------------------------------------------------------------
+# Optimizer & Scheduler
+# ------------------------------------------------------------
+optimizer:
+  name: "adamw"         # options: adam | adamw
+  lr: 1e-4
+  weight_decay: 0.01
+  scheduler: "cosine"   # options: cosine | none
+  warmup_steps: 100
+
+# ------------------------------------------------------------
+# Training Parameters
+# ------------------------------------------------------------
+training:
+  epochs: 5
+  gradient_clip_norm: 1.0
+  mixed_precision: true
+  distributed: false    # true for DDP or multi-GPU
+  resume_from: null     # checkpoint path to resume
+
+# ------------------------------------------------------------
+# Loss Configuration
+# ------------------------------------------------------------
+loss:
+  recon_l1: 0.0           # L1 reconstruction loss weight
+  recon_l2: 0.0           # L2 reconstruction loss weight
+  clip_align: 1.0         # CLIP alignment loss
+  mcp: 0.5                # Multi-Constraint Prompting loss (factual, style, ethical, diversity)
+  # You can adjust these weights to balance between visual alignment and constraint control
+
+constraints:
+  factual_weight: 1.0
+  style_weight: 1.0
+  ethical_weight: 1.0
+  diversity_weight: 1.0
+
+# ------------------------------------------------------------
+# Evaluation & Logging
+# ------------------------------------------------------------
+evaluation:
+  run_during_training: true
+  clip_score: true
+  fid: true
+  save_generated_samples: true
+  eval_prompts:
+    - "A realistic portrait of a scientist working in a futuristic lab."
+    - "A cinematic landscape of an alien city under neon lights."
+    - "A photo of a robot painting on a canvas."
+
+logging:
+  use_wandb: false        # enable if using Weights & Biases
+  log_dir: "logs"
+  print_summary: true
+
+# ------------------------------------------------------------
+# Ablation Experiments (optional)
+# ------------------------------------------------------------
+ablations:
+  - name: "no_constraints"
+    description: "Baseline without MCP"
+    loss:
+      mcp: 0.0
+      clip_align: 1.0
+
+  - name: "with_constraints"
+    description: "Full MCP + alignment"
+    loss:
+      mcp: 0.5
+      clip_align: 1.0

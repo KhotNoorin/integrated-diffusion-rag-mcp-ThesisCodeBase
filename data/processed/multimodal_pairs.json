@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "image": "astronaut_01.jpg",
+    "caption": "An astronaut floating in space",
+    "tokens": ["an", "astronaut", "floating", "in", "space"]
+  },
+  {
+    "id": 2,
+    "image": "scientist_01.jpg",
+    "caption": "A scientist working in a futuristic laboratory",
+    "tokens": ["a", "scientist", "working", "in", "a", "futuristic", "laboratory"]
+  }
+]

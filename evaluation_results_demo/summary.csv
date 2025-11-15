@@ -1,0 +1,3 @@
+metric,baseline_mean,improved_mean,delta_percent
+CLIPScore,nan,0.20711325109004974,nan
+OverallScore,nan,0.20711325109004974,nan

@@ -1,0 +1,5 @@
+experiment,delta_mean
+ablation_rag,38.1
+constraint_weight_sweep,26.38
+full_model_integration,16.17
+ablation_diffusion,-25.42

@@ -1,0 +1,45 @@
+# ============================================================
+# Ablation: Diffusion-Only
+# Purpose: Assess baseline diffusion generation quality
+# ============================================================
+
+experiment:
+  name: "ablation_diffusion"
+  description: "Evaluate Stable Diffusion baseline without retrieval or constraints."
+  output_dir: "experiments/results/ablation_diffusion"
+
+model:
+  type: "diffusion_only"
+  pretrained_name: "runwayml/stable-diffusion-v1-5"
+  use_retriever: false
+  use_diffusion: true
+  use_constraints: false
+
+diffusion:
+  guidance_scale: 7.5
+  num_inference_steps: 50
+  height: 512
+  width: 512
+
+training:
+  epochs: 2
+  batch_size: 2
+  lr: 1e-4
+
+loss:
+  clip_align: 1.0     # evaluate image-text alignment
+  mcp: 0.0
+  recon_l1: 0.0
+  recon_l2: 0.0
+
+evaluation:
+  run_during_training: true
+  metrics: [ "FID", "CLIPScore" ]
+
+dataset:
+  path: "data/processed/image_dataset"
+  max_samples: 500
+
+notes:
+  - "Baseline diffusion model without external context or prompting control."
+  - "Used to measure improvement from RAG + MCP integration."

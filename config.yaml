@@ -1,0 +1,80 @@
+# ==============================
+# config.yaml — Global Config
+# ==============================
+
+project:
+  name: "Integrating Diffusion Models with Retrieval-Augmented Generation and Multi-Constraint Prompting"
+  version: "1.0.0"
+  author: "Your Name"
+  seed: 42
+
+paths:
+  data_root: "./data"
+  raw_data: "./data/raw"
+  processed_data: "./data/processed"
+  embeddings: "./data/embeddings"
+  retrieval_index: "./data/retrieval_index"
+  results: "./experiments/results"
+  evaluation: "./evaluation"
+  logs: "./logs"
+  hf_cache: "./models/hf_cache"
+  pretrained_models: "./models/pretrained"
+
+models:
+  # --- Retrieval Models ---
+  text_embedder: "sentence-transformers/all-mpnet-base-v2"
+  image_embedder: "openai/clip-vit-base-patch32"
+  retriever_backend: "faiss"        # or "chroma"
+  reranker_model: "cross-encoder/ms-marco-MiniLM-L-6-v2"
+
+  # --- Diffusion Models ---
+  diffusion_model: "runwayml/stable-diffusion-v1-5"
+  controlnet_model: "lllyasviel/sd-controlnet-canny"
+  scheduler: "DDIMScheduler"
+
+  # --- Multimodal Fusion ---
+  fusion_method: "attention_bridge"
+  fusion_hidden_dim: 768
+
+constraints:
+  factuality:
+    enabled: true
+    weight: 1.0
+  style:
+    enabled: true
+    default_style: "realistic"
+    strength: 1.0
+  ethical_filter:
+    enabled: true
+  diversity:
+    enabled: true
+    penalty_weight: 0.5
+
+evaluation:
+  metrics: ["BLEU", "CLIPScore", "FID", "CSR"]
+  num_samples: 20
+  qualitative_examples: true
+  human_eval: true
+  save_csv: true
+  save_tex: true
+
+frontend:
+  framework: "streamlit"
+  host: "0.0.0.0"
+  port: 8501
+  default_prompt: "A cinematic portrait of an astronaut walking on Mars."
+  theme: "dark"
+
+training:
+  batch_size: 8
+  learning_rate: 2e-5
+  num_epochs: 5
+  optimizer: "AdamW"
+  scheduler: "cosine"
+  save_interval: 1
+  checkpoint_dir: "./models/checkpoints"
+
+logging:
+  level: "INFO"
+  file: "./logs/project.log"
+  use_rich: true

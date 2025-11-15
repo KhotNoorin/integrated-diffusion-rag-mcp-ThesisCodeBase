@@ -1,0 +1,9 @@
+dataset:
+  name: "Mini Multimodal Demo Dataset"
+  version: "1.0"
+  description: "Small synthetic dataset for testing RAG + Diffusion integration"
+  total_images: 3
+  total_texts: 3
+  languages: ["en"]
+  author: "Your Name"
+  date_created: "2025-10-12"

@@ -1,0 +1,61 @@
+# ===== Basics & Utilities =====
+python-dotenv
+PyYAML
+tqdm
+loguru
+rich
+
+# ===== Core ML & Embeddings =====
+torch
+torchvision
+torchaudio
+transformers
+sentence-transformers
+
+# ===== Retrieval & Indexing =====
+faiss-cpu
+chromadb
+scikit-learn
+
+# ===== Diffusion & Image Generation =====
+diffusers[torch]
+accelerate
+safetensors
+
+# ===== Evaluation Metrics & Visualization =====
+pandas
+numpy
+scipy
+matplotlib
+seaborn
+plotly
+scikit-image
+torchmetrics
+pytest
+pytest-cov
+
+# ===== UI / Frontend =====
+streamlit
+gradio
+Pillow
+markdown-it-py
+
+# ===== Human Eval & Reporting =====
+openpyxl
+latexcodec
+
+# ===== Optional: ControlNet / Fusion Modules =====
+# peft (install from source if needed: pip install git+https://github.com/huggingface/peft.git)
+onnxruntime
+
+# ===== Misc & Dev =====
+requests
+pytest-mock
+black
+isort
+pre-commit
+
+nltk==3.9.1
+rouge-score==0.1.2
+evaluate==0.4.3
+bert-score==0.3.13

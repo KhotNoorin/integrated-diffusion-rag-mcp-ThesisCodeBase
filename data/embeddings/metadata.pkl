@@ -1,0 +1,7 @@
+# Example content (Pickled Python dict)
+{
+  "num_samples": 3,
+  "embedding_dim": 768,
+  "model": "sentence-transformers/all-mpnet-base-v2",
+  "created": "2025-10-12"
+}

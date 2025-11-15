@@ -1,0 +1,2 @@
+sample1.png,A futuristic robot reading a book.
+sample2.png,An astronaut walking on Mars.

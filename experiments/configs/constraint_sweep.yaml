@@ -1,0 +1,48 @@
+# ============================================================
+# Constraint Sweep Experiment
+# Purpose: Analyze impact of constraint weighting on generation accuracy
+# ============================================================
+
+experiment:
+  name: "constraint_weight_sweep"
+  description: "Sweep MCP constraint weights to study accuracy vs control trade-off."
+  output_dir: "experiments/results/constraint_sweep"
+
+model:
+  type: "multimodal"
+  use_retriever: true
+  use_diffusion: true
+  use_constraints: true
+  fusion_mode: "gated"
+
+retrieval:
+  top_k: 3
+  reranker: true
+
+training:
+  epochs: 3
+  batch_size: 4
+  lr: 1e-4
+
+loss:
+  recon_l1: 0.0
+  clip_align: 1.0
+  mcp: 1.0
+
+constraint_sweep:
+  factual_weights: [0.5, 1.0, 1.5, 2.0]
+  style_weights: [0.5, 1.0, 1.5, 2.0]
+  ethical_weights: [0.5, 1.0, 2.0]
+  diversity_weights: [0.5, 1.0, 2.0]
+
+evaluation:
+  metrics: [ "FID", "CLIPScore", "Constraint_Factual", "Constraint_Style" ]
+  record_best: true
+
+dataset:
+  path: "data/processed/multimodal_dataset"
+  max_samples: 500
+
+notes:
+  - "Used to determine optimal constraint weight balance for best accuracy/quality."
+  - "Helps visualize trade-offs between realism (FID↓) and control (Constraint↑)."

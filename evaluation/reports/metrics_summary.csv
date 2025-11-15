@@ -1,0 +1,5 @@
+experiment,metric,base_mean,base_std,improved_mean,improved_std,delta_mean
+ablation_diffusion,FID,65.3,,48.7,,-25.42
+ablation_rag,BLEU,0.42,,0.58,,38.1
+constraint_weight_sweep,Constraint_Factual,0.72,,0.91,,26.38
+full_model_integration,CLIPScore,0.68,,0.79,,16.17

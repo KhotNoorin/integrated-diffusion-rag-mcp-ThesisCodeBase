@@ -1,0 +1,7 @@
+{
+  "backend": "faiss",
+  "embedding_dim": 768,
+  "num_vectors": 3,
+  "index_file": "faiss_index.bin",
+  "created": "2025-10-12"
+}

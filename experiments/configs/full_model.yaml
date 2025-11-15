@@ -1,0 +1,59 @@
+# ============================================================
+# Full Model: RAG + Diffusion + MCP
+# Purpose: Unified multimodal content generation experiment
+# ============================================================
+
+experiment:
+  name: "full_model_integration"
+  description: "Joint evaluation of the complete RAG + Diffusion + MCP pipeline."
+  output_dir: "experiments/results/full_model"
+
+model:
+  type: "multimodal"
+  use_retriever: true
+  use_diffusion: true
+  use_constraints: true
+  fusion_mode: "attention"
+  pretrained_name: "runwayml/stable-diffusion-v1-5"
+
+retrieval:
+  retriever_type: "hybrid"
+  top_k: 5
+  reranker: true
+  embedder: "CLIP-ViT-B/32"
+
+constraints:
+  factual: true
+  style: "cinematic"
+  ethical: true
+  diversity: true
+  weights:
+    factual: 1.0
+    style: 1.0
+    ethical: 1.0
+    diversity: 1.0
+
+training:
+  epochs: 5
+  batch_size: 4
+  lr: 1e-4
+  mixed_precision: true
+
+loss:
+  recon_l1: 0.0
+  clip_align: 1.0
+  mcp: 0.8
+
+evaluation:
+  run_during_training: true
+  metrics: [ "BLEU", "FID", "CLIPScore", "CSR" ]
+  qualitative_samples: 10
+  save_generated_samples: true
+
+dataset:
+  path: "data/processed/multimodal_dataset"
+  max_samples: 1000
+
+notes:
+  - "Full integration test: retrieval for factual grounding, constraints for control, diffusion for generation."
+  - "This is the main experiment demonstrating accuracy and quality improvements."

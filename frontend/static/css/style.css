@@ -1,0 +1,11 @@
+/* frontend/static/css/style.css
+   Lightweight styling used by Streamlit (overrides) */
+body {
+    font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+.stAppHeader {
+    display: none;
+}
+h1 {
+    color: #0f172a;
+}
