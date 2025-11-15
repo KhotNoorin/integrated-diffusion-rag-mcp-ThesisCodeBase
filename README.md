@@ -219,7 +219,7 @@ Once launched, you can:
     - Textual summaries or captions
     - Evaluation metrics such as FID and CLIPScore
 
-##Evaluation
+## Evaluation
 
 You can evaluate generated samples using:
 
